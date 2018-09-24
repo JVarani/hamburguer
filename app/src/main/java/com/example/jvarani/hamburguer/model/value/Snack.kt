@@ -4,4 +4,5 @@ data class Snack (
         val id: Int,
         val name: String,
         val ingredient: List<Int>,
-        val image: String)
+        val image: String
+)
