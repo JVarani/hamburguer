@@ -1,4 +1,4 @@
 package com.example.jvarani.hamburguer.ui.main
 
-class MainPresenter {
+class MainPresenter : MainContract.Presenter{
 }

@@ -1,4 +1,4 @@
-package com.example.jvarani.hamburguer.model.repository
+package com.example.jvarani.hamburguer.domain.repository
 
 import com.example.jvarani.hamburguer.model.value.Cart
 import com.example.jvarani.hamburguer.model.value.Ingredient

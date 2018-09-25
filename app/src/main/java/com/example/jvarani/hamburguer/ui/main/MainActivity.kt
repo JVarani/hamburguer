@@ -1,21 +1,24 @@
 package com.example.jvarani.hamburguer.ui.main
 
+import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.jvarani.hamburguer.R
-import com.example.jvarani.hamburguer.model.repository.APIClient
+import com.example.jvarani.hamburguer.databinding.MainBinding
+import com.example.jvarani.hamburguer.domain.repository.APIClient
 import com.example.jvarani.hamburguer.model.value.Snack
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainContract.View {
     private lateinit var getSnack: Call<List<Snack>>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main)
+        val dataBind = DataBindingUtil.setContentView<MainBinding>(this, R.layout.main)
+        dataBind.presenter = MainPresenter()
 
         val apiClient = APIClient()
         val iRest = apiClient.getApiClient()
