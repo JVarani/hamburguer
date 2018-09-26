@@ -8,8 +8,11 @@ import android.view.View
 import com.example.jvarani.hamburguer.R
 import com.example.jvarani.hamburguer.databinding.MainBinding
 import com.example.jvarani.hamburguer.model.value.Ingredient
+import com.example.jvarani.hamburguer.model.value.Promotion
 import com.example.jvarani.hamburguer.model.value.Snack
+import com.example.jvarani.hamburguer.ui.main.adapter.ItemListPromotionAdapter
 import com.example.jvarani.hamburguer.ui.main.adapter.ItemListSnackAdapter
+import kotlinx.android.synthetic.main.bottom_sheet_promotion.*
 import kotlinx.android.synthetic.main.main.*
 
 class MainActivity : AppCompatActivity(), MainContract.View {
@@ -34,8 +37,15 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         rv.adapter = adapter
     }
 
+    override fun loadPromotion(list: List<Promotion>, isEmpty: Boolean) {
+        val adapter = ItemListPromotionAdapter(this, list)
+        rv_promotion.layoutManager = LinearLayoutManager(this)
+        rv_promotion.adapter = adapter
+    }
+
     override fun onStart() {
         super.onStart()
+        dataBind.presenter!!.getPromotions()
         dataBind.presenter!!.getSnacks()
     }
 }
