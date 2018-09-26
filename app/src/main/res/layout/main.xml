@@ -5,7 +5,9 @@
     tools:context=".ui.main.MainActivity">
 
     <data>
+
         <import type="android.view.View" />
+
         <variable
             name="presenter"
             type="com.example.jvarani.hamburguer.ui.main.MainPresenter" />
@@ -30,18 +32,18 @@
                     android:id="@+id/iv_book"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_book_white_24dp"
-                    android:layout_margin="18dp"/>
+                    android:layout_margin="18dp"
+                    android:src="@drawable/ic_book_white_24dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/snacks_menu"
                     android:layout_marginTop="15dp"
-                    android:textSize="20dp"
+                    android:layout_toRightOf="@+id/iv_book"
+                    android:text="@string/snacks_menu"
                     android:textColor="#fff"
-                    android:textStyle="bold"
-                    android:layout_toRightOf="@+id/iv_book"/>
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 
@@ -49,61 +51,92 @@
                 android:id="@+id/rl_cart_itens"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_title"
+                android:clickable="true"
                 android:background="@color/colorPrimary"
-                android:layout_below="@+id/rl_title">
+                android:focusable="true">
 
-                <LinearLayout
-                    android:id="@+id/ll_itens"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_centerHorizontal="true">
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?android:attr/selectableItemBackground">
 
-                    <ImageView
-                        android:id="@+id/iv_quantity"
+                    <LinearLayout
+                        android:id="@+id/ll_itens"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_quantity_white_24dp"
-                        android:layout_margin="14dp"
-                        android:layout_centerHorizontal="true"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no_snack_added"
-                        android:layout_marginTop="15dp"
-                        android:textSize="17dp"
-                        android:textColor="#fff"
-                        android:textStyle="bold"
-                        android:layout_centerHorizontal="true"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/ll_itens">
-
-                    <ImageView
-                        android:id="@+id/iv_arrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_arrow_down_pink_24dp"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="1dp"/>
+                        android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/iv_cart"
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="14dp">
+
+                            <ImageView
+                                android:id="@+id/iv_quantity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:src="@drawable/ic_quantity_white_24dp" />
+
+                            <TextView
+                                android:id="@+id/tvCounter"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="9dp"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:maxLines="2"
+                                android:minWidth="17dp"
+                                android:paddingBottom="6dp"
+                                android:text="0"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/no_snack_added"
+                            android:textColor="#fff"
+                            android:textSize="17dp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_cart_pink_25dp"
+                        android:layout_below="@+id/ll_itens"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="10dp"/>
+                        android:orientation="horizontal">
 
-                </LinearLayout>
+                        <ImageView
+                            android:id="@+id/iv_arrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="1dp"
+                            android:src="@drawable/ic_arrow_down_pink_24dp" />
 
+                        <ImageView
+                            android:id="@+id/iv_cart"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="10dp"
+                            android:src="@drawable/ic_cart_pink_25dp" />
+
+                    </LinearLayout>
+                </RelativeLayout>
             </RelativeLayout>
             <!--<android.support.v7.widget.CardView
                 android:layout_width="match_parent"
@@ -120,8 +153,8 @@
                 <ProgressBar
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="visible"
-                    android:layout_centerInParent="true" />
+                    android:layout_centerInParent="true"
+                    android:visibility="visible" />
             </RelativeLayout>
 
             <android.support.v7.widget.RecyclerView
@@ -129,7 +162,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_below="@+id/rl_cart_itens">
+                android:layout_below="@+id/rl_cart_itens" >
 
             </android.support.v7.widget.RecyclerView>
 
@@ -138,10 +171,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/rl_cart_itens"
-                android:text="@string/empty_list_try_again"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:visibility="gone"/>
+                android:text="@string/empty_list_try_again"
+                android:visibility="gone" />
 
         </RelativeLayout>
 

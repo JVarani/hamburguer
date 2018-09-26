@@ -11,7 +11,7 @@ import com.example.jvarani.hamburguer.model.value.Ingredient
 import com.example.jvarani.hamburguer.model.value.Snack
 import kotlinx.android.synthetic.main.item_list_snack_adapter.view.*
 
-class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
+class ViewHolderSnack (view: View) : RecyclerView.ViewHolder(view) {
     // Holds the TextView that will add each animal to
     val ivSnack = view.iv_snack
     val tvName = view.tv_name
@@ -20,13 +20,13 @@ class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     val rlEdit = view.rl_edit
 }
 
-class ItemListSnackAdapter(private val context : Context, private val list : List<Snack>, val listIngredient: List<Ingredient>) : RecyclerView.Adapter<ViewHolder>() {
+class ItemListSnackAdapter(private val context : Context, private val list : List<Snack>, val listIngredient: List<Ingredient>) : RecyclerView.Adapter<ViewHolderSnack>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_list_snack_adapter, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderSnack {
+        return ViewHolderSnack(LayoutInflater.from(context).inflate(R.layout.item_list_snack_adapter, parent, false))
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolderSnack, position: Int) {
         val item = list[position]
 
         Glide.with(context)
@@ -42,4 +42,3 @@ class ItemListSnackAdapter(private val context : Context, private val list : Lis
     }
 
 }
-
