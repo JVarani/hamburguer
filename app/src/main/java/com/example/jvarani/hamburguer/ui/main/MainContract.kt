@@ -1,7 +1,13 @@
 package com.example.jvarani.hamburguer.ui.main
 
-interface MainContract{
-    interface View{}
+import com.example.jvarani.hamburguer.model.value.Snack
 
-    interface Presenter{}
+interface MainContract{
+    interface View{
+        fun loadListSnack(list: List<Snack>, isEmpty: Boolean)
+    }
+
+    interface Presenter{
+        fun getSnacks()
+    }
 }
