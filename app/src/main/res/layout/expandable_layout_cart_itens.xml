@@ -40,6 +40,5 @@
         android:layout_width="match_parent"
         android:layout_height="1536dp"
         android:background="@color/opacity_black"
-        android:onClick=""
         app:layout_expandable="true" />
 </net.cachapa.expandablelayout.ExpandableLinearLayout>
