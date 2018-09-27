@@ -79,7 +79,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/fl_image"
-                android:layout_below="@+id/v_divider">
+                android:layout_below="@+id/v_divider"
+                android:background="?android:attr/selectableItemBackground" >
 
                 <ImageButton
                     android:id="@+id/ib_cart"
@@ -89,7 +90,9 @@
                     android:background="@drawable/button_rounded_blue"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="40dp"
-                    android:layout_marginBottom="20dp" />
+                    android:layout_marginBottom="20dp"
+                    android:clickable="true"
+                    android:focusable="true" />
 
                 <TextView
                     android:id="@+id/tv_add"
@@ -106,7 +109,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/rl_add"
-                android:layout_below="@+id/v_divider">
+                android:layout_below="@+id/v_divider"
+                android:background="?android:attr/selectableItemBackground" >
 
                 <ImageButton
                     android:id="@+id/ib_edit"

@@ -5,6 +5,7 @@ import com.example.jvarani.hamburguer.model.value.Ingredient
 import com.example.jvarani.hamburguer.model.value.Promotion
 import com.example.jvarani.hamburguer.model.value.Snack
 import com.google.gson.JsonArray
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -26,7 +27,7 @@ interface IRest {
     fun getCart() : Call<List<Cart>>
 
     @PUT("api/pedido/{id}")
-    fun bookHamburger(@Path("id") id: Int)
+    fun bookHamburger(@Path("id") id: Int) : Call<ResponseBody>
 
     @PUT("api/pedido/{id}")
     fun bookHamburger(@Path("id") id: Int, @Body extras: JsonArray)

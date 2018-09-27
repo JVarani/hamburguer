@@ -1,8 +1,11 @@
 package com.example.jvarani.hamburguer.model.value
 
+import com.google.gson.annotations.SerializedName
+
 data class Cart (
         val id: Int,
-        val snackId: Int,
+        @SerializedName("id_sandwich")
+        val idSnack: Int,
         val extras: List<Int>,
         val date: String = ""
 )
