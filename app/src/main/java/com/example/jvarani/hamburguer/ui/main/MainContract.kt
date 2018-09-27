@@ -1,6 +1,7 @@
 package com.example.jvarani.hamburguer.ui.main
 
 import android.content.Context
+import android.widget.TextView
 import com.example.jvarani.hamburguer.model.value.Cart
 import com.example.jvarani.hamburguer.model.value.Ingredient
 import com.example.jvarani.hamburguer.model.value.Promotion

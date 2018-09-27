@@ -11,6 +11,7 @@ import com.example.jvarani.hamburguer.databinding.MainBinding
 import com.example.jvarani.hamburguer.model.event.AddSnackInCartEvent
 import com.example.jvarani.hamburguer.model.event.LoadingPromotionEvent
 import com.example.jvarani.hamburguer.model.event.LoadingSnackEvent
+import com.example.jvarani.hamburguer.model.event.CartEvent
 import com.example.jvarani.hamburguer.model.value.Cart
 import com.example.jvarani.hamburguer.model.value.Ingredient
 import com.example.jvarani.hamburguer.model.value.Promotion
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     lateinit var dataBind: MainBinding
     lateinit var expandable: ExpandableLinearLayout
     lateinit var ivArrow: ImageView
+    lateinit var listSnack: List<Snack>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +46,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
             tv_empty.visibility = View.VISIBLE
             return
         }
+        listSnack = list
+        dataBind.presenter!!.getListCart(true)
 
         rl_pb_loading.visibility = View.GONE
         tv_empty.visibility = View.GONE
@@ -81,7 +85,6 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     @Subscribe(threadMode = ThreadMode.ASYNC)
     fun onLoadingSnacks(event: LoadingSnackEvent) {
         dataBind.presenter!!.getSnacks()
-        dataBind.presenter!!.getListCart(true)
     }
 
     @Subscribe(threadMode = ThreadMode.ASYNC)
@@ -92,6 +95,17 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onAddSnackInCart(event: AddSnackInCartEvent) {
         dataBind.presenter!!.addSnackInCart(this, event.snack)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onText(event: CartEvent) {
+        tv_counter.text = event.list.size.toString()
+
+        for (snack in listSnack) {
+            if (snack.id == event.list[event.list.size-1].idSnack){
+                tv_item_cart.text = snack.name
+            }
+        }
     }
 
     override fun onStart() {

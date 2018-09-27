@@ -5,11 +5,13 @@ import android.util.Log
 import android.widget.Toast
 import com.example.jvarani.hamburguer.domain.repository.APIClient
 import com.example.jvarani.hamburguer.domain.repository.IRest
+import com.example.jvarani.hamburguer.model.event.CartEvent
 import com.example.jvarani.hamburguer.model.value.Cart
 import com.example.jvarani.hamburguer.model.value.Ingredient
 import com.example.jvarani.hamburguer.model.value.Promotion
 import com.example.jvarani.hamburguer.model.value.Snack
 import okhttp3.ResponseBody
+import org.greenrobot.eventbus.EventBus
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,8 +21,6 @@ class MainPresenter(val view: MainContract.View) : MainContract.Presenter {
     private lateinit var iRest: IRest
     private lateinit var listSnack: List<Snack>
     private lateinit var listIngredient: List<Ingredient>
-
-    var quantity: String = "0"
 
     override fun getSnacks() {
         apiClient = APIClient()
@@ -105,7 +105,7 @@ class MainPresenter(val view: MainContract.View) : MainContract.Presenter {
                 if (response != null && response.isSuccessful) {
                     if (response.body() != null && response.body()!!.isNotEmpty()){
                         if (isQuantity)
-                            quantity = (response.body()!!.size + 1).toString()
+                            EventBus.getDefault().post(CartEvent(response.body()!!))
                         else
                             view.expandableCartItens(response.body()!!, listSnack, listIngredient)
                     }
@@ -125,8 +125,10 @@ class MainPresenter(val view: MainContract.View) : MainContract.Presenter {
             }
 
             override fun onResponse(call: Call<ResponseBody>?, response: retrofit2.Response<ResponseBody>?) {
-                if (response != null && response.isSuccessful)
+                if (response != null && response.isSuccessful) {
                     Toast.makeText(context, snack.name + " Adicionado ao carrinho", Toast.LENGTH_SHORT).show()
+                    getListCart(true)
+                }
             }
         })
     }

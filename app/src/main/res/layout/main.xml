@@ -82,7 +82,7 @@
                             android:src="@drawable/ic_quantity_white_24dp" />
 
                         <TextView
-                            android:id="@+id/tvCounter"
+                            android:id="@+id/tv_counter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -92,12 +92,13 @@
                             android:maxLines="2"
                             android:minWidth="17dp"
                             android:paddingBottom="6dp"
-                            android:text="@={presenter.quantity}"                            android:textColor="@color/white"
+                            android:text="0"                            android:textColor="@color/white"
                             android:textSize="12sp"
                             android:textStyle="bold" />
                     </RelativeLayout>
 
                     <TextView
+                        android:id="@+id/tv_item_cart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
