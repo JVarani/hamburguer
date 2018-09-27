@@ -2,15 +2,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".ui.snack.SnackActivity">
 
     <data>
-
         <import type="android.view.View" />
 
         <variable
             name="presenter"
-            type="com.example.jvarani.hamburguer.ui.main.MainPresenter" />
+            type="com.example.jvarani.hamburguer.ui.snack.SnackPresenter" />
     </data>
 
     <RelativeLayout
@@ -26,18 +25,34 @@
             android:background="@color/colorPrimary">
 
             <ImageView
-                android:id="@+id/iv_book"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="18dp"
-                android:src="@drawable/ic_book_white_24dp" />
+                android:id="@+id/iv_close"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:padding="7dp"
+                android:src="@drawable/ic_back_white_24dp"
+                android:onClick="@{(v) -> presenter.finish()}" />
 
             <TextView
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:layout_toRightOf="@+id/iv_book"
-                android:text="@string/snacks_menu"
+                android:layout_marginLeft="15dp"
+                android:text="Lanche"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_toRightOf="@+id/iv_close"/>
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:text="R$20,20"
                 android:textColor="#fff"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -45,7 +60,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/rl_cart_itens"
+            android:id="@+id/rl_ingredient_itens"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/rl_title"
@@ -92,18 +107,19 @@
                             android:maxLines="2"
                             android:minWidth="17dp"
                             android:paddingBottom="6dp"
-                            android:text="0"                            android:textColor="@color/white"
+                            android:text="0"
+                            android:textColor="@color/white"
                             android:textSize="12sp"
                             android:textStyle="bold" />
                     </RelativeLayout>
 
                     <TextView
-                        android:id="@+id/tv_item_cart"
+                        android:id="@+id/tv_item_ingredient"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
-                        android:text="@string/no_snack_added"
+                        android:text="@string/no_ingredient_added"
                         android:textColor="#fff"
                         android:textSize="17dp"
                         android:textStyle="bold" />
@@ -126,12 +142,12 @@
                         android:src="@drawable/ic_arrow_down_pink_24dp" />
 
                     <ImageView
-                        android:id="@+id/iv_cart"
+                        android:id="@+id/iv_list"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/ic_cart_pink_25dp" />
+                        android:src="@drawable/ic_list_pink_24dp" />
 
                 </LinearLayout>
             </RelativeLayout>
@@ -141,7 +157,7 @@
             android:id="@+id/rl_pb_loading"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/rl_cart_itens">
+            android:layout_below="@+id/rl_ingredient_itens">
 
             <ProgressBar
                 android:layout_width="wrap_content"
@@ -153,10 +169,9 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_below="@+id/rl_cart_itens"
-            android:layout_marginBottom="56dp">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rl_ingredient_itens"
+            android:layout_above="@+id/v_button_divider">
 
         </android.support.v7.widget.RecyclerView>
 
@@ -164,19 +179,29 @@
             android:id="@+id/tv_empty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/rl_cart_itens"
+            android:layout_below="@+id/rl_ingredient_itens"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:text="@string/empty_snack_list_try_again"
+            android:text="@string/empty_ingredient_list_try_again"
             android:visibility="gone" />
 
-        <android.support.design.widget.CoordinatorLayout
+        <View
+            android:id="@+id/v_button_divider"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="2dp"
+            android:background="@color/colorDivider"
+            android:layout_above="@+id/bt_add"/>
 
-            <include layout="@layout/bottom_sheet_promotion" />
-
-        </android.support.design.widget.CoordinatorLayout>
+        <Button
+            android:id="@+id/bt_add"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/save"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:textSize="20dp"/>
 
         <net.cachapa.expandablelayout.ExpandableLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -188,7 +213,7 @@
             app:el_duration="500"
             app:el_expanded="false"
             android:focusable="true"
-            android:layout_below="@+id/rl_cart_itens">
+            android:layout_below="@+id/rl_ingredient_itens">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -202,7 +227,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/cart"
+                    android:text="@string/ingredient"
                     android:textSize="22sp"
                     android:textColor="@color/colorPrimary"
                     android:textStyle="bold"

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.jvarani.hamburguer.R
+import com.example.jvarani.hamburguer.model.common.Utils.Mask
 import com.example.jvarani.hamburguer.model.value.Cart
 import com.example.jvarani.hamburguer.model.value.Ingredient
 import com.example.jvarani.hamburguer.model.value.Snack
@@ -48,7 +49,7 @@ class ItemListCartAdapter(private val context : Context
                         total += ingredient.price
                 }
             }
-            holder.tvPrice.text = total.toString()
+            holder.tvPrice.text = Mask.FormataValor.formatarValor(total)
         }
     }
 

@@ -1,15 +1,18 @@
 package com.example.jvarani.hamburguer.ui.main.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.jvarani.hamburguer.R
+import com.example.jvarani.hamburguer.model.common.Utils.Mask
 import com.example.jvarani.hamburguer.model.event.AddSnackInCartEvent
 import com.example.jvarani.hamburguer.model.value.Ingredient
 import com.example.jvarani.hamburguer.model.value.Snack
+import com.example.jvarani.hamburguer.ui.snack.SnackActivity
 import kotlinx.android.synthetic.main.item_list_snack_adapter.view.*
 import org.greenrobot.eventbus.EventBus
 
@@ -19,8 +22,6 @@ class ViewHolderSnack (view: View) : RecyclerView.ViewHolder(view) {
     val tvPrice = view.tv_price
     val rlAdd = view.rl_add
     val rlEdit = view.rl_edit
-    val ibCart = view.ib_cart
-    val ibEdit = view.ib_edit
 }
 
 class ItemListSnackAdapter(private val context : Context, private val list : List<Snack>, val listIngredient: List<Ingredient>) : RecyclerView.Adapter<ViewHolderSnack>() {
@@ -45,13 +46,16 @@ class ItemListSnackAdapter(private val context : Context, private val list : Lis
             }
         }
 
-        holder.tvPrice.text = total.toString()
+        holder.tvPrice.text = Mask.FormataValor.formatarValor(total)
         holder.rlAdd.setOnClickListener {
             addSnackToCart(item)
         }
 
-        holder.ibCart.setOnClickListener {
-            addSnackToCart(item)
+        holder.rlEdit.setOnClickListener {
+            context.startActivity(Intent(context, SnackActivity::class.java)
+                    .putExtra("name", item.name)
+                    .putExtra("value", total)
+                    .putExtra("id", item.id))
         }
     }
 
