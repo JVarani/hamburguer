@@ -1,10 +1,14 @@
 <resources>
     <string name="app_name">Hamburguer</string>
-    <string name="empty_list_try_again">Nenhum lanche disponivel.\n Clique aqui para tentar novamente!</string>
+    <string name="empty_snack_list_try_again">Nenhum lanche disponivel.\n Tente novamente mais tarde!</string>
+    <string name="empty_ingredient_list_try_again">Nenhum ingrediente disponivel.\n Tente novamente mais tarde!</string>
     <string name="edit">Editar</string>
     <string name="add">Adicionar</string>
     <string name="snacks_menu">Cardápio de lanches</string>
     <string name="no_snack_added">Nenhum lanche adicionado</string>
+    <string name="no_ingredient_added">Nenhum ingrediente adicionado</string>
     <string name="promotion_upper">PROMOÇÃO!</string>
     <string name="cart">Carrinho</string>
+    <string name="ingredient">Ingredientes</string>
+    <string name="save">Salvar</string>
 </resources>

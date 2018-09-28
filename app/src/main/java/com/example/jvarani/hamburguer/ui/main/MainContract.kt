@@ -9,9 +9,10 @@ import com.example.jvarani.hamburguer.model.value.Snack
 
 interface MainContract{
     interface View{
-        fun loadListSnack(list: List<Snack>, listIngredient: List<Ingredient>, isEmpty: Boolean)
+        fun loadListSnack(list: List<Snack>, listIngredient: List<Ingredient>)
         fun loadPromotion(list: List<Promotion>, isEmpty: Boolean)
         fun expandableCartItens(listCart: List<Cart>, list: List<Snack>, listIngredient: List<Ingredient>)
+        fun emptyList()
     }
 
     interface Presenter{

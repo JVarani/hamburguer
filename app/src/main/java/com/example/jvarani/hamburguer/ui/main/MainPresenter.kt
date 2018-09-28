@@ -1,20 +1,25 @@
 package com.example.jvarani.hamburguer.ui.main
 
+import android.app.Activity
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
+import com.example.john.capptan.extensions.showToastShort
 import com.example.jvarani.hamburguer.domain.repository.APIClient
 import com.example.jvarani.hamburguer.domain.repository.IRest
+import com.example.jvarani.hamburguer.model.common.Utils.Utils
 import com.example.jvarani.hamburguer.model.event.CartEvent
-import com.example.jvarani.hamburguer.model.value.Cart
-import com.example.jvarani.hamburguer.model.value.Ingredient
-import com.example.jvarani.hamburguer.model.value.Promotion
-import com.example.jvarani.hamburguer.model.value.Snack
+import com.example.jvarani.hamburguer.model.value.*
 import okhttp3.ResponseBody
 import org.greenrobot.eventbus.EventBus
+import org.json.JSONArray
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import com.example.jvarani.hamburguer.model.common.Utils.Utils.Json
+import com.google.gson.*
+import org.json.JSONObject
+import java.lang.reflect.Array
+
 
 class MainPresenter(val view: MainContract.View) : MainContract.Presenter {
     private lateinit var apiClient: APIClient
@@ -30,6 +35,7 @@ class MainPresenter(val view: MainContract.View) : MainContract.Presenter {
         getSnack.enqueue(object : Callback<List<Snack>> {
             override fun onFailure(call: Call<List<Snack>>?, t: Throwable?) {
                 Log.d("error", t.toString())
+                view.emptyList()
             }
 
             override fun onResponse(call: Call<List<Snack>>?, response: Response<List<Snack>>?) {
@@ -37,7 +43,8 @@ class MainPresenter(val view: MainContract.View) : MainContract.Presenter {
                     if (response.body() != null && response.body()!!.isNotEmpty()){
                         listSnack = response.body()!!
                         getIngredients()
-                    }
+                    } else
+                        view.emptyList()
                 }
             }
         })
@@ -51,16 +58,17 @@ class MainPresenter(val view: MainContract.View) : MainContract.Presenter {
         getIngredient.enqueue(object : Callback<List<Ingredient>> {
             override fun onFailure(call: Call<List<Ingredient>>?, t: Throwable?) {
                 Log.d("error", t.toString())
+                view.emptyList()
             }
 
             override fun onResponse(call: Call<List<Ingredient>>?, response: Response<List<Ingredient>>?) {
                 if (response != null && response.isSuccessful) {
                     if (response.body() != null && response.body()!!.isNotEmpty()){
                         listIngredient = response.body()!!
-                        view.loadListSnack(listSnack, listIngredient, false)
+                        view.loadListSnack(listSnack, listIngredient)
                     }
                     else
-                        view.loadListSnack(listSnack, listIngredient, true)
+                        view.emptyList()
                 }
             }
         })
@@ -118,18 +126,36 @@ class MainPresenter(val view: MainContract.View) : MainContract.Presenter {
         val apiClient = APIClient()
         val iRest = apiClient.getApiClient()
 
-        val setSnackToCar: Call<ResponseBody> = iRest.bookHamburger(snack.id)
-        setSnackToCar.enqueue(object : Callback<ResponseBody> {
-            override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
-                Log.d("error", t.toString())
-            }
-
-            override fun onResponse(call: Call<ResponseBody>?, response: retrofit2.Response<ResponseBody>?) {
-                if (response != null && response.isSuccessful) {
-                    Toast.makeText(context, snack.name + " Adicionado ao carrinho", Toast.LENGTH_SHORT).show()
-                    getListCart(true)
+        val arr = JsonArray(10)
+        arr.add("1")
+        if (Utils.GetIdSnackId.getIdSnackId(context, snack.id) == snack.id) {
+            val setSnackToCar: Call<ResponseBody> = iRest.bookHamburger(snack.id, arr)
+            setSnackToCar.enqueue(object : Callback<ResponseBody> {
+                override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
+                    Log.d("error", t.toString())
                 }
-            }
-        })
+
+                override fun onResponse(call: Call<ResponseBody>?, response: retrofit2.Response<ResponseBody>?) {
+                    if (response != null && response.isSuccessful) {
+                        (context as Activity).showToastShort(snack.name + " Adicionado ao carrinho", false)
+                        getListCart(true)
+                    }
+                }
+            })
+        } else {
+            val setSnackToCar: Call<ResponseBody> = iRest.bookHamburger(snack.id)
+            setSnackToCar.enqueue(object : Callback<ResponseBody> {
+                override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
+                    Log.d("error", t.toString())
+                }
+
+                override fun onResponse(call: Call<ResponseBody>?, response: retrofit2.Response<ResponseBody>?) {
+                    if (response != null && response.isSuccessful) {
+                        (context as Activity).showToastShort(snack.name + " Adicionado ao carrinho", false)
+                        getListCart(true)
+                    }
+                }
+            })
+        }
     }
 }
