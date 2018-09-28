@@ -205,8 +205,13 @@
                     android:text="@string/cart"
                     android:textSize="22sp"
                     android:textColor="@color/colorPrimary"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="10dp"/>
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorDivider"
+                    android:layout_marginBottom="10dp" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_cart"

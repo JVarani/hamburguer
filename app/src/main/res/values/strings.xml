@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Hamburguer</string>
-    <string name="empty_snack_list_try_again">Nenhum lanche disponivel.\n Clique aqui para tentar novamente!</string>
-    <string name="empty_ingredient_list_try_again">Nenhum ingrediente disponivel.\n Clique aqui para tentar novamente!</string>
+    <string name="empty_snack_list_try_again">Nenhum lanche disponivel.\n Tente novamente mais tarde!</string>
+    <string name="empty_ingredient_list_try_again">Nenhum ingrediente disponivel.\n Tente novamente mais tarde!</string>
     <string name="edit">Editar</string>
     <string name="add">Adicionar</string>
     <string name="snacks_menu">Cardápio de lanches</string>

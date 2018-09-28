@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.main.MainActivity"
     android:layout_width="match_parent"
-    android:layout_height="130dp">
+    android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -22,21 +22,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ProgressBar
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"/>
-
-                </RelativeLayout>
-
                 <ImageView
                     android:id="@+id/iv_ingredient"
-                    android:layout_width="110dp"
-                    android:layout_height="110dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:scaleType="centerCrop"/>
 
                 <ImageView
@@ -55,43 +44,26 @@
                 android:text="X-Bacon"
                 android:textStyle="bold"
                 android:textSize="17sp"
-                android:layout_toLeftOf="@+id/tv_price"/>
+                android:layout_centerVertical="true"/>
 
             <TextView
                 android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/iv_close"
                 android:text="R$20,00"
                 android:textSize="17sp"
                 android:textColor="@color/black"/>
 
-            <View
-                android:id="@+id/v_divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_toRightOf="@+id/fl_image"
-                android:layout_below="@+id/tv_name"
-                android:background="@color/colorDivider"/>
-
-            <RelativeLayout
-                android:id="@+id/rl_add"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/fl_image"
-                android:layout_below="@+id/v_divider"
-                android:background="?android:attr/selectableItemBackground"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/tv_add"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/add"
-                    android:textSize="18dp"
-                    android:textStyle="bold"/>
-            </RelativeLayout>
+            <ImageView
+                android:id="@+id/iv_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_close_pink_24dp"
+                android:padding="10dp"/>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </RelativeLayout>

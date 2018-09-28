@@ -2,7 +2,7 @@ package com.example.jvarani.hamburguer.model.value
 
 data class Snack (
         val id: Int,
-        val name: String,
-        val ingredients: List<Int>,
+        var name: String,
+        var ingredients: MutableList<Int>,
         val image: String
 )

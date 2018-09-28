@@ -54,7 +54,8 @@
                 android:layout_margin="10dp"
                 android:text="X-Bacon"
                 android:textStyle="bold"
-                android:textSize="17sp"/>
+                android:textSize="17sp"
+                android:layout_toLeftOf="@+id/tv_price"/>
 
             <TextView
                 android:id="@+id/tv_price"
@@ -101,7 +102,8 @@
                     android:id="@+id/v_center"
                     android:layout_width="1dp"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"/>
+                    android:layout_centerInParent="true"
+                    android:background="@color/colorDivider"/>
 
                 <RelativeLayout
                     android:id="@+id/rl_edit"

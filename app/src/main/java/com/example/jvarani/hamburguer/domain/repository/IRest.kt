@@ -1,11 +1,12 @@
 package com.example.jvarani.hamburguer.domain.repository
 
-import com.example.jvarani.hamburguer.model.value.Cart
-import com.example.jvarani.hamburguer.model.value.Ingredient
-import com.example.jvarani.hamburguer.model.value.Promotion
-import com.example.jvarani.hamburguer.model.value.Snack
+import com.example.jvarani.hamburguer.model.value.*
 import com.google.gson.JsonArray
+import com.google.gson.JsonDeserializer
+import com.google.gson.JsonObject
 import okhttp3.ResponseBody
+import org.json.JSONArray
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -30,7 +31,7 @@ interface IRest {
     fun bookHamburger(@Path("id") id: Int) : Call<ResponseBody>
 
     @PUT("api/pedido/{id}")
-    fun bookHamburger(@Path("id") id: Int, @Body extras: JsonArray)
+    fun bookHamburger(@Path("id") id: Int, @Body extras: JsonArray) : Call<ResponseBody>
 
     //PROMOTION
     @GET("api/promocao")

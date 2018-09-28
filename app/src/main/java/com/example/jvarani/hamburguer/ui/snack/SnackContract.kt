@@ -7,6 +7,8 @@ interface SnackContract {
         fun loadIngredients(listIngredient: List<Ingredient>)
         fun emptyList()
         fun finishActivity()
+        fun expandableIngredientItens()
+        fun saveSnack()
     }
 
     interface Presenter {

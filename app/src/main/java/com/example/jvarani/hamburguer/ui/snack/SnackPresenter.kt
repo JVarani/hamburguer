@@ -37,10 +37,14 @@ class SnackPresenter(val view: SnackContract.View) : SnackContract.Presenter {
     }
 
     fun expandableClick(){
-
+        view.expandableIngredientItens()
     }
 
-    fun finish(){
+    fun closeClick(){
         view.finishActivity()
+    }
+
+    fun saveClick(){
+        view.saveSnack()
     }
 }

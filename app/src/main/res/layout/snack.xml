@@ -31,7 +31,7 @@
                 android:layout_marginTop="10dp"
                 android:padding="7dp"
                 android:src="@drawable/ic_back_white_24dp"
-                android:onClick="@{(v) -> presenter.finish()}" />
+                android:onClick="@{(v) -> presenter.closeClick()}" />
 
             <TextView
                 android:id="@+id/tv_name"
@@ -201,11 +201,12 @@
             android:text="@string/save"
             android:textColor="@color/orange"
             android:textStyle="bold"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:onClick="@{(v) -> presenter.saveClick()}" />
 
         <net.cachapa.expandablelayout.ExpandableLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/expandable_layout_cart_itens"
+            android:id="@+id/expandable_layout_ingredient_itens"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -230,11 +231,16 @@
                     android:text="@string/ingredient"
                     android:textSize="22sp"
                     android:textColor="@color/colorPrimary"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="10dp"/>
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorDivider"
+                    android:layout_marginBottom="10dp" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_cart"
+                    android:id="@+id/rv_ingredient"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_marginBottom="4dp" />

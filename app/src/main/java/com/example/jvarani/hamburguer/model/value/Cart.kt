@@ -6,6 +6,6 @@ data class Cart (
         val id: Int,
         @SerializedName("id_sandwich")
         val idSnack: Int,
-        val extras: List<Int>,
+        val extras: MutableList<Int>,
         val date: String = ""
 )
